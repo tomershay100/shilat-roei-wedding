@@ -10,7 +10,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: clamp(1.5rem, 4vh, 3rem);
     padding: clamp(0.3rem, 1vh, 1rem) clamp(1rem, 5vw, 3rem);
     padding-top: max(clamp(0.3rem, 1vh, 1rem), env(safe-area-inset-top));
     padding-bottom: max(clamp(0.3rem, 1vh, 1rem), env(safe-area-inset-bottom));
@@ -23,6 +24,7 @@
     height: auto;
     mix-blend-mode: multiply;
     flex-shrink: 0;
+    margin-top: clamp(1rem, 4vh, 3rem);
 }
 
 /* Thank you string */
@@ -42,6 +44,7 @@
     flex-direction: column;
     align-items: center;
     gap: clamp(1rem, 3vh, 2rem);
+    margin-bottom: auto;
 }
 
 .day-gift-label {
