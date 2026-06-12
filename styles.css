@@ -99,7 +99,7 @@ body {
 
 .landing-header-img {
     display: block;
-    width: clamp(320px, 88vw, 700px);
+    width: clamp(340px, 98vw, 900px);
     height: auto;
     mix-blend-mode: multiply;
     animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both;
@@ -154,7 +154,7 @@ body {
 }
 
 .venue-name {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: clamp(1.9rem, 5.5vw, 3.5rem);
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -188,9 +188,7 @@ body {
     height: clamp(18px, 2.2vw, 24px);
     object-fit: contain;
     mix-blend-mode: multiply;
-    /* tint the black icon to champagne gold */
-    filter: brightness(0) saturate(100%) invert(58%) sepia(28%) saturate(420%) hue-rotate(355deg) brightness(92%);
-    opacity: 0.85;
+    opacity: 0.7;
     flex-shrink: 0;
 }
 
@@ -217,9 +215,9 @@ body {
     height: clamp(38px, 6.5vw, 64px);
     object-fit: contain;
     mix-blend-mode: multiply;
-    /* tint icons to champagne gold to match the palette */
-    filter: brightness(0) saturate(100%) invert(58%) sepia(28%) saturate(420%) hue-rotate(355deg) brightness(92%);
-    opacity: 0.78;
+    /* tint + boost contrast to make strokes appear thicker */
+    filter: brightness(0) saturate(100%) invert(58%) sepia(28%) saturate(420%) hue-rotate(355deg) brightness(92%) contrast(180%);
+    opacity: 0.9;
     margin-bottom: 0.25rem;
 }
 
@@ -233,7 +231,7 @@ body {
 
 .time-value {
     font-family: var(--font-display);
-    font-size: clamp(2.4rem, 7vw, 4.25rem);
+    font-size: clamp(1.9rem, 5.5vw, 3.25rem);
     font-weight: 400;
     letter-spacing: 0.02em;
     color: var(--color-text-muted);
@@ -267,7 +265,7 @@ body {
 
 .countdown-value {
     font-family: var(--font-display);
-    font-size: clamp(2.8rem, 9vw, 6rem);
+    font-size: clamp(2rem, 6.5vw, 4rem);
     font-weight: 500;
     line-height: 1;
     letter-spacing: 0.02em;
@@ -286,7 +284,7 @@ body {
 
 .countdown-sep {
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 7vw, 5rem);
+    font-size: clamp(1.6rem, 5vw, 3.5rem);
     font-weight: 300;
     color: var(--color-gold);
     opacity: 0.45;
