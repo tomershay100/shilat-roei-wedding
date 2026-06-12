@@ -1,0 +1,229 @@
+<style>
+  .wed-card {
+    position: relative;
+    aspect-ratio: 9/16;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    font-family: Georgia, "Frank Ruhl Libre", serif;
+    direction: rtl;
+  }
+  .wed-card .layer { position:absolute; inset:0; }
+  .wed-card .content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 7% 8%;
+    text-align: center;
+  }
+  .wed-card h4 { font-size: 1.6rem; letter-spacing: 0.08em; margin: 0; font-weight: 400; }
+  .wed-card .date { font-size: 0.85rem; letter-spacing: 0.25em; opacity: 0.85; }
+  .wed-card .countdown { display:flex; gap: 4%; }
+  .wed-card .cd-cell {
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 38px;
+  }
+  .wed-card .cd-val { font-size: 1.2rem; font-weight: 500; }
+  .wed-card .cd-lbl { font-size: 0.55rem; letter-spacing: 0.18em; opacity: 0.7; }
+  .wed-card .venue { font-size: 0.7rem; letter-spacing: 0.2em; opacity: 0.8; }
+  .wed-card .divider { width: 38%; height: 1px; background: currentColor; opacity: 0.35; }
+  .wed-card .ornament { font-size: 1.2rem; letter-spacing: 0.4em; opacity: 0.7; }
+
+  /* === A: Editorial Gold === */
+  .dir-a { background: #f5ede2; color: #2d1f17; }
+  .dir-a .photo {
+    background: linear-gradient(135deg, #d4b896 0%, #b8956e 50%, #8b6f4a 100%);
+    filter: sepia(0.3);
+  }
+  .dir-a .vignette {
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(245,237,226,0.85) 100%);
+  }
+  .dir-a h4 { font-style: italic; font-size: 1.9rem; color: #6b4a2a; }
+  .dir-a h4 span { display:block; font-size: 0.65rem; letter-spacing: 0.5em; margin-top: 8px; color: #8b6f4a; font-style: normal; }
+  .dir-a .cd-val { color: #6b4a2a; font-weight: 500; }
+  .dir-a .gold-rule { width: 60%; height: 1px;
+    background: linear-gradient(90deg, transparent, #b8956e, transparent); }
+  .dir-a .corner {
+    position: absolute; width: 50px; height: 50px;
+    border: 1px solid #b8956e; opacity: 0.6;
+  }
+  .dir-a .c-tl { top: 14px; left: 14px; border-right:none; border-bottom:none; }
+  .dir-a .c-tr { top: 14px; right: 14px; border-left:none; border-bottom:none; }
+  .dir-a .c-bl { bottom: 14px; left: 14px; border-right:none; border-top:none; }
+  .dir-a .c-br { bottom: 14px; right: 14px; border-left:none; border-top:none; }
+
+  /* === B: Cinematic Twilight === */
+  .dir-b {
+    background: #1a1220;
+    color: #f0e4d0;
+  }
+  .dir-b .photo {
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(255,180,120,0.4), transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(180,90,140,0.5), transparent 60%),
+      linear-gradient(180deg, #2a1a3a 0%, #4a2545 40%, #6b3a3a 70%, #b87850 100%);
+  }
+  .dir-b .grain { background:
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,0.3), transparent 40%);
+  }
+  .dir-b h4 {
+    font-size: 2rem; letter-spacing: 0.05em;
+    background: linear-gradient(180deg, #ffe8c4, #d4a574);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 300;
+  }
+  .dir-b h4 span { display:block; font-size: 0.55rem; letter-spacing: 0.6em;
+    color: #d4a574; -webkit-text-fill-color: #d4a574; margin-top: 10px; }
+  .dir-b .cd-val { color: #ffd9a8; }
+  .dir-b .cd-lbl { color: rgba(240,228,208,0.7); }
+  .dir-b .pill {
+    border: 1px solid rgba(212,165,116,0.5);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 0.6rem; letter-spacing: 0.25em;
+    color: #d4a574;
+  }
+  .dir-b .glow {
+    position: absolute; width: 200%; height: 200%;
+    background: radial-gradient(circle at center, rgba(255,200,140,0.15), transparent 40%);
+    top: -50%; left: -50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+  /* === C: Garden Romance === */
+  .dir-c {
+    background: linear-gradient(180deg, #faf6f0 0%, #f0e8db 100%);
+    color: #3d2818;
+  }
+  .dir-c .photo {
+    background:
+      radial-gradient(circle at 10% 15%, #c8a47a 0%, transparent 8%),
+      radial-gradient(circle at 90% 25%, #d4b896 0%, transparent 7%),
+      radial-gradient(circle at 15% 85%, #b89878 0%, transparent 10%),
+      radial-gradient(circle at 85% 90%, #c8a888 0%, transparent 9%),
+      linear-gradient(135deg, #f5ead8 0%, #ead5b8 100%);
+    opacity: 0.5;
+  }
+  .dir-c h4 {
+    font-size: 2.2rem;
+    color: #6b3a2a;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+  .dir-c h4 .amp {
+    display: block; font-size: 3rem; font-style: italic;
+    color: #b8704a; margin: -8px 0; font-family: "Brush Script MT", cursive;
+  }
+  .dir-c h4 span.evt {
+    display: block; font-size: 0.55rem; letter-spacing: 0.55em;
+    color: #8b5a3a; margin-top: 12px; font-style: normal;
+  }
+  .dir-c .cd-val { color: #6b3a2a; font-weight: 400; }
+  .dir-c .botanical {
+    font-size: 1.3rem; color: #a8704a; opacity: 0.6;
+  }
+  .dir-c .frame-deco {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-size: 1.1rem; color: #b8704a; opacity: 0.5;
+    letter-spacing: 0.3em;
+  }
+</style>
+
+<h2>Three Design Directions</h2>
+<p class="subtitle">Each interprets "modern · luxury · warm · romantic · exciting" differently. Pick the one that resonates — we'll refine from there.</p>
+
+<div class="cards" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
+
+  <!-- DIRECTION A: Editorial Gold -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 0; background: transparent;">
+      <div class="wed-card dir-a">
+        <div class="layer photo"></div>
+        <div class="layer vignette"></div>
+        <div class="corner c-tl"></div>
+        <div class="corner c-tr"></div>
+        <div class="corner c-bl"></div>
+        <div class="corner c-br"></div>
+        <div class="content">
+          <div class="date">23 · 06 · 2026</div>
+          <div class="gold-rule"></div>
+          <h4>שילת &amp; רועי<span>WE'RE GETTING MARRIED</span></h4>
+          <div class="gold-rule"></div>
+          <div class="countdown">
+            <div class="cd-cell"><span class="cd-val">142</span><span class="cd-lbl">ימים</span></div>
+            <div class="cd-cell"><span class="cd-val">06</span><span class="cd-lbl">שעות</span></div>
+            <div class="cd-cell"><span class="cd-val">28</span><span class="cd-lbl">דקות</span></div>
+          </div>
+          <div class="venue">קיסר ים · קיסריה</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A · Editorial Gold</h3>
+      <p>Bridal-magazine luxury. Cream backdrop, sepia photo, gold hairlines and corner ornaments, italic display serif. Quiet, expensive, timeless.</p>
+    </div>
+  </div>
+
+  <!-- DIRECTION B: Cinematic Twilight -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 0; background: transparent;">
+      <div class="wed-card dir-b">
+        <div class="layer photo"></div>
+        <div class="layer glow"></div>
+        <div class="layer grain"></div>
+        <div class="content">
+          <div class="pill">SAVE THE DATE</div>
+          <h4>שילת &amp; רועי<span>23·06·2026</span></h4>
+          <div class="countdown">
+            <div class="cd-cell"><span class="cd-val">142</span><span class="cd-lbl">ימים</span></div>
+            <div class="cd-cell"><span class="cd-val">06</span><span class="cd-lbl">שעות</span></div>
+            <div class="cd-cell"><span class="cd-val">28</span><span class="cd-lbl">דקות</span></div>
+            <div class="cd-cell"><span class="cd-val">12</span><span class="cd-lbl">שניות</span></div>
+          </div>
+          <div class="venue">קיסר ים · קיסריה</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B · Cinematic Twilight</h3>
+      <p>Dark, dramatic, golden-hour palette. Gradient mesh background (sunset over the sea), gold gradient text, glowing pulse, grain. Modern and emotional — feels like a film poster.</p>
+    </div>
+  </div>
+
+  <!-- DIRECTION C: Garden Romance -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 0; background: transparent;">
+      <div class="wed-card dir-c">
+        <div class="layer photo"></div>
+        <div class="content">
+          <div class="frame-deco" style="top: 4%;">· · ✿ · ·</div>
+          <div class="date">יום שלישי · 23 ביוני 2026</div>
+          <h4>שילת<span class="amp">&amp;</span>רועי<span class="evt">חוגגים אהבה</span></h4>
+          <div class="botanical">❀ ─── ❀</div>
+          <div class="countdown">
+            <div class="cd-cell"><span class="cd-val">142</span><span class="cd-lbl">ימים</span></div>
+            <div class="cd-cell"><span class="cd-val">06</span><span class="cd-lbl">שעות</span></div>
+            <div class="cd-cell"><span class="cd-val">28</span><span class="cd-lbl">דקות</span></div>
+          </div>
+          <div class="venue">קיסר ים · קיסריה</div>
+          <div class="frame-deco" style="bottom: 4%;">· · ✿ · ·</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C · Garden Romance</h3>
+      <p>Soft, hand-crafted, romantic. Botanical accents, oversized script ampersand, watercolor bokeh background, warm terracotta type. Inviting and personal — handwritten letter energy.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top: 32px;">
+  Click a card to lock it in, or tell me in chat. We can also mix elements (e.g. "B's palette but A's ornaments").
+</p>

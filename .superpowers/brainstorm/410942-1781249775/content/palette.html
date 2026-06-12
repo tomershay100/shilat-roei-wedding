@@ -1,0 +1,254 @@
+<style>
+  .pal-card {
+    aspect-ratio: 4/5;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    font-family: "Frank Ruhl Libre", Georgia, serif;
+    direction: rtl;
+  }
+  .pal-card .ph {
+    position: absolute; inset: 0;
+    background: url("/.superpowers/brainstorm/img.jpg"); /* placeholder; we'll use gradients */
+    z-index: 0;
+  }
+  .pal-card .ov { position: absolute; inset: 0; z-index: 1; }
+  .pal-card .ct {
+    position: relative; z-index: 2;
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: space-evenly;
+    padding: 8% 6%;
+    text-align: center;
+  }
+  .pal-card .names { font-size: 1.7rem; letter-spacing: 0.04em; font-weight: 500; line-height: 1; }
+  .pal-card .micro { font-size: 0.55rem; letter-spacing: 0.3em; opacity: 0.7; }
+  .pal-card .big   { font-size: 2.1rem; font-weight: 500; line-height: 1; }
+  .pal-card .rule  { width: 50%; height: 1px; opacity: 0.5; }
+  .pal-card .swatches { position: absolute; bottom: 8px; left: 8px; right: 8px; display: flex; gap: 4px; justify-content: center; z-index: 3; }
+  .pal-card .sw { width: 18px; height: 18px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); }
+
+  /* Mock photo background: sea/sand gradient */
+  .photo-1 { background: linear-gradient(180deg, #6b8aa8 0%, #9bb0c4 35%, #d9c7a8 70%, #e5d4b4 100%); }
+  .photo-2 { background: linear-gradient(180deg, #b87850 0%, #d4a574 40%, #e8c896 70%, #f0d4a8 100%); }
+
+  /* ========== P1: CURRENT (baseline) ========== */
+  .p1 .ov { background: rgba(247,244,240,0.78); }
+  .p1 { color: #2c2420; }
+  .p1 .rule { background: #2c2420; }
+
+  /* ========== P2: WARM CHAMPAGNE (gold + cream) ========== */
+  .p2 .ov {
+    background:
+      linear-gradient(135deg, rgba(252,245,232,0.55) 0%, rgba(248,230,200,0.65) 100%);
+  }
+  .p2 { color: #4a2c1a; }
+  .p2 .names, .p2 .big { color: #6b4a2a; }
+  .p2 .micro { color: #8b6f4a; }
+  .p2 .rule { background: linear-gradient(90deg, transparent, #b8956e, transparent); height: 1px; opacity: 1; }
+
+  /* ========== P3: DUSTY ROSE & TERRACOTTA ========== */
+  .p3 .ov {
+    background:
+      linear-gradient(180deg, rgba(255,240,232,0.7) 0%, rgba(245,220,210,0.7) 100%);
+  }
+  .p3 { color: #5a2418; }
+  .p3 .names, .p3 .big { color: #8b3a28; }
+  .p3 .micro { color: #a85a48; }
+  .p3 .rule { background: #c87868; opacity: 0.6; }
+
+  /* ========== P4: MOONLIT INK (deep navy + ivory) ========== */
+  .p4 .ov { background: linear-gradient(180deg, rgba(20,28,48,0.55) 0%, rgba(40,30,55,0.75) 100%); }
+  .p4 { color: #f5ead0; }
+  .p4 .names, .p4 .big {
+    background: linear-gradient(180deg, #f5e6c4, #d4b896);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .p4 .micro { color: #d4b896; }
+  .p4 .rule { background: linear-gradient(90deg, transparent, #d4b896, transparent); opacity: 1; }
+
+  /* ========== P5: SUN-WASHED LINEN (off-white + soft sage) ========== */
+  .p5 .ov { background: linear-gradient(180deg, rgba(248,245,238,0.8) 0%, rgba(232,232,220,0.8) 100%); }
+  .p5 { color: #3a3a2a; }
+  .p5 .names, .p5 .big { color: #4a5a3a; }
+  .p5 .micro { color: #6b7858; }
+  .p5 .rule { background: #6b7858; opacity: 0.4; }
+
+  /* ========== P6: MIDNIGHT WINE (burgundy + blush + gold) ========== */
+  .p6 .ov { background: linear-gradient(180deg, rgba(40,15,25,0.55) 0%, rgba(75,25,40,0.72) 100%); }
+  .p6 { color: #f5e0d0; }
+  .p6 .names, .p6 .big {
+    background: linear-gradient(180deg, #f8d4b8, #d4956e);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .p6 .micro { color: #e8b89c; letter-spacing: 0.32em; }
+  .p6 .rule { background: linear-gradient(90deg, transparent, #d4956e, transparent); opacity: 1; }
+</style>
+
+<h2>Step 1 · Color Palette</h2>
+<p class="subtitle">Same content, same photo background, same skeleton — six overlay/text palettes. The photo behind is a mock sunset-by-the-sea gradient. Click the one that feels closest, or describe a mix.</p>
+
+<div class="cards" style="grid-template-columns: repeat(3, 1fr); gap: 18px;">
+
+  <!-- P1 -->
+  <div class="card" data-choice="p1" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="pal-card p1">
+        <div class="ph photo-1"></div>
+        <div class="ov"></div>
+        <div class="ct">
+          <div class="micro">23 · 06 · 2026</div>
+          <div class="names">שילת &amp; רועי</div>
+          <div class="rule"></div>
+          <div class="big">19:00</div>
+          <div class="micro">קיסר ים · קיסריה</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#f7f4f0"></div>
+          <div class="sw" style="background:#2c2420"></div>
+          <div class="sw" style="background:#8b6f4a;opacity:0.4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>P1 · Current (baseline)</h3>
+      <p>Warm off-white overlay, dark brown ink. Clean and neutral — the reference point.</p>
+    </div>
+  </div>
+
+  <!-- P2 -->
+  <div class="card" data-choice="p2" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="pal-card p2">
+        <div class="ph photo-1"></div>
+        <div class="ov"></div>
+        <div class="ct">
+          <div class="micro">23 · 06 · 2026</div>
+          <div class="names">שילת &amp; רועי</div>
+          <div class="rule"></div>
+          <div class="big">19:00</div>
+          <div class="micro">קיסר ים · קיסריה</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#fcf5e8"></div>
+          <div class="sw" style="background:#6b4a2a"></div>
+          <div class="sw" style="background:#b8956e"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>P2 · Warm Champagne</h3>
+      <p>Cream overlay with golden-warmth gradient, deep cognac ink, soft champagne hairline dividers. Reads as quiet luxury — the most "bridal magazine" of the light options.</p>
+    </div>
+  </div>
+
+  <!-- P3 -->
+  <div class="card" data-choice="p3" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="pal-card p3">
+        <div class="ph photo-1"></div>
+        <div class="ov"></div>
+        <div class="ct">
+          <div class="micro">23 · 06 · 2026</div>
+          <div class="names">שילת &amp; רועי</div>
+          <div class="rule"></div>
+          <div class="big">19:00</div>
+          <div class="micro">קיסר ים · קיסריה</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#fff0e8"></div>
+          <div class="sw" style="background:#8b3a28"></div>
+          <div class="sw" style="background:#c87868"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>P3 · Dusty Rose &amp; Terracotta</h3>
+      <p>Blush overlay, terracotta ink, rosy dividers. Warmest and most romantic. Hebrew serifs read beautifully in this brick-red.</p>
+    </div>
+  </div>
+
+  <!-- P4 -->
+  <div class="card" data-choice="p4" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="pal-card p4">
+        <div class="ph photo-1"></div>
+        <div class="ov"></div>
+        <div class="ct">
+          <div class="micro">23 · 06 · 2026</div>
+          <div class="names">שילת &amp; רועי</div>
+          <div class="rule"></div>
+          <div class="big">19:00</div>
+          <div class="micro">קיסר ים · קיסריה</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#141c30"></div>
+          <div class="sw" style="background:#f5ead0"></div>
+          <div class="sw" style="background:#d4b896"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>P4 · Moonlit Ink</h3>
+      <p>Deep navy overlay over the photo, ivory text, gold gradient on display text and rules. Photo shines through more. Modern + cinematic + luxurious.</p>
+    </div>
+  </div>
+
+  <!-- P5 -->
+  <div class="card" data-choice="p5" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="pal-card p5">
+        <div class="ph photo-1"></div>
+        <div class="ov"></div>
+        <div class="ct">
+          <div class="micro">23 · 06 · 2026</div>
+          <div class="names">שילת &amp; רועי</div>
+          <div class="rule"></div>
+          <div class="big">19:00</div>
+          <div class="micro">קיסר ים · קיסריה</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#f8f5ee"></div>
+          <div class="sw" style="background:#4a5a3a"></div>
+          <div class="sw" style="background:#6b7858"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>P5 · Sun-Washed Linen</h3>
+      <p>Cream + soft sage. Gentle, garden-romance, modern-minimal. Calmer than P3, more organic than P2.</p>
+    </div>
+  </div>
+
+  <!-- P6 -->
+  <div class="card" data-choice="p6" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="pal-card p6">
+        <div class="ph photo-2"></div>
+        <div class="ov"></div>
+        <div class="ct">
+          <div class="micro">23 · 06 · 2026</div>
+          <div class="names">שילת &amp; רועי</div>
+          <div class="rule"></div>
+          <div class="big">19:00</div>
+          <div class="micro">קיסר ים · קיסריה</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#4b1928"></div>
+          <div class="sw" style="background:#f5e0d0"></div>
+          <div class="sw" style="background:#d4956e"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>P6 · Midnight Wine</h3>
+      <p>Burgundy overlay, blush ink, rose-gold gradient on display. The most dramatic and "exciting" of all — feels like a candlelit reception.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top: 28px;">
+  Click your favourite. Next we'll explore <strong>fonts &amp; sizes</strong>, then <strong>ambient animations</strong>, then <strong>section spacing / formatters</strong>.
+</p>

@@ -1,0 +1,438 @@
+<style>
+  /* Shared mockup frame */
+  .full-mock {
+    aspect-ratio: 9/16;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 44px rgba(0,0,0,0.28);
+    direction: rtl;
+    font-family: "Frank Ruhl Libre", Georgia, serif;
+  }
+  .full-mock .photo { position:absolute; inset:0; z-index:0;
+    /* mock sunset/sea photo */
+    background:
+      radial-gradient(ellipse at 50% 90%, rgba(232,168,108,0.5), transparent 60%),
+      linear-gradient(180deg, #4a5a78 0%, #7d8ba0 30%, #c8b896 60%, #d4a878 80%, #a86848 100%);
+  }
+  .full-mock .ov   { position:absolute; inset:0; z-index:1; pointer-events:none; }
+  .full-mock .grain{ position:absolute; inset:0; z-index:2; pointer-events:none; opacity:0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .full-mock .stage{ position:relative; z-index:3; height:100%; display:flex; flex-direction:column;
+    align-items:center; justify-content:space-evenly; padding: 6% 5%; text-align:center; }
+  .full-mock .row  { display:flex; align-items:center; justify-content:center; gap: 8px; }
+  .full-mock .col  { display:flex; flex-direction:column; align-items:center; }
+  .full-mock .hairline { width: 40px; height: 1px; }
+  .full-mock .times{ display:flex; gap: 26px; align-items:center; }
+  .full-mock .time-sep { width:1px; height: 56px; }
+  .full-mock .cd { display:flex; gap: 14px; direction:ltr; }
+  .full-mock .cd .cell { display:flex; flex-direction:column; align-items:center; min-width: 44px; }
+  .full-mock .gifts { display:flex; gap: 12px; }
+  .full-mock .gbtn { width: 48px; height: 48px; border-radius: 10px; display:flex; align-items:center; justify-content:center; font-size: 1.2rem; }
+  .header-img {
+    /* Mock "header.png" with names */
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .header-img .amp { font-size: 1.5em; font-style: italic; opacity: 0.7; vertical-align: -0.05em; margin: 0 0.1em; }
+  .pill { display:inline-flex; align-items:center; gap:6px; padding: 4px 12px; border-radius: 100px; font-size: 0.55rem; letter-spacing:0.25em; }
+
+  /* ============================================================
+     OPTION 1 · WARM CHAMPAGNE EDITORIAL
+     Cream + cognac + gold. Frank Ruhl Libre + Cormorant italic.
+     Soft fade-up animation. Generous airy spacing. Gold hairlines.
+     ============================================================ */
+  .opt1 .ov { background: linear-gradient(180deg, rgba(252,245,232,0.84) 0%, rgba(248,232,208,0.86) 100%); }
+  .opt1 { color: #4a2c1a; }
+  .opt1 .header-img { color: #6b4a2a; font-family: "Frank Ruhl Libre", serif; }
+  .opt1 .header-img .amp { color: #b8956e; font-family: Georgia, serif; }
+  .opt1 .micro { font-family: "David Libre", serif; font-size: 0.6rem; letter-spacing: 0.32em; color: #8b6f4a; text-transform: uppercase; }
+  .opt1 .info  { font-family: "David Libre", serif; font-size: 0.78rem; color: #6b4a2a; letter-spacing: 0.06em; }
+  .opt1 .venue { font-family: "Frank Ruhl Libre", serif; font-size: 1.4rem; color: #4a2c1a; font-weight: 500; }
+  .opt1 .nav-pill { border:1px solid rgba(139,111,74,0.4); color:#8b6f4a; padding: 3px 10px; border-radius: 20px; font-size:0.55rem; letter-spacing:0.2em; }
+  .opt1 .time-val { font-family: "Frank Ruhl Libre", serif; font-size: 1.7rem; color: #6b4a2a; }
+  .opt1 .time-lbl { font-family: "David Libre", serif; font-size: 0.55rem; letter-spacing:0.25em; color:#8b6f4a; }
+  .opt1 .icon-circle { font-size: 1rem; color:#b8956e; opacity:0.7; }
+  .opt1 .time-sep, .opt1 .hairline { background: linear-gradient(90deg, transparent, #b8956e, transparent); height:1px; }
+  .opt1 .time-sep { width:1px; background: linear-gradient(180deg, transparent, #b8956e, transparent); }
+  .opt1 .cd-val { font-family: "Frank Ruhl Libre", serif; font-size: 1.5rem; color: #6b4a2a; font-variant-numeric: tabular-nums; }
+  .opt1 .cd-lbl { font-family: "David Libre", serif; font-size: 0.5rem; letter-spacing:0.22em; color:#a08568; }
+  .opt1 .gbtn { background: rgba(184,149,110,0.08); border:1px solid rgba(184,149,110,0.4); color:#6b4a2a; }
+  .opt1 .gift-label { font-family:"David Libre",serif; font-size:0.6rem; letter-spacing:0.3em; color:#8b6f4a; margin-bottom:6px; }
+
+  /* ============================================================
+     OPTION 2 · MOONLIT INK CINEMATIC
+     Deep navy overlay (photo shines through). Ivory + gold gradient text.
+     Tall display sizes. Slow drifting glow animation. Pill labels.
+     ============================================================ */
+  .opt2 .ov { background:
+    radial-gradient(ellipse at 50% 100%, rgba(212,165,116,0.22), transparent 50%),
+    linear-gradient(180deg, rgba(18,22,38,0.42) 0%, rgba(32,22,40,0.78) 100%);
+  }
+  .opt2 { color: #f5ead0; }
+  .opt2 .header-img {
+    font-size: 2.4rem; font-weight:300;
+    background: linear-gradient(180deg, #fbe6c4, #d4a574);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .opt2 .header-img .amp { font-style: italic; opacity: 0.9; }
+  .opt2 .micro { font-family: "David Libre", serif; font-size: 0.55rem; letter-spacing: 0.45em; color: #d4a574; text-transform: uppercase; }
+  .opt2 .info { font-family: "David Libre", serif; font-size: 0.8rem; color: #f0e0c0; letter-spacing: 0.08em; }
+  .opt2 .venue { font-family: "Frank Ruhl Libre", serif; font-size: 1.4rem; color: #f5ead0; font-weight: 400; }
+  .opt2 .nav-pill { background: rgba(212,165,116,0.15); border:1px solid rgba(212,165,116,0.5); color:#d4a574; padding: 4px 12px; border-radius:100px; font-size:0.55rem; letter-spacing:0.25em; }
+  .opt2 .time-val { font-family: "Frank Ruhl Libre", serif; font-size: 2rem; font-weight: 300;
+    background: linear-gradient(180deg, #f8dab0, #c89868);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .opt2 .time-lbl { font-family:"David Libre",serif; font-size:0.55rem; letter-spacing:0.3em; color:rgba(245,234,208,0.65); }
+  .opt2 .icon-circle { font-size:1rem; color:#d4a574; }
+  .opt2 .hairline, .opt2 .time-sep { background: linear-gradient(90deg, transparent, rgba(212,165,116,0.6), transparent); height: 1px; }
+  .opt2 .time-sep { width:1px; background: linear-gradient(180deg, transparent, rgba(212,165,116,0.5), transparent); }
+  .opt2 .cd-val { font-family: "Frank Ruhl Libre", serif; font-size: 1.8rem; font-weight: 300;
+    background: linear-gradient(180deg, #fbe6c4, #c89868);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    font-variant-numeric: tabular-nums; }
+  .opt2 .cd-lbl { font-family:"David Libre",serif; font-size:0.5rem; letter-spacing:0.32em; color:rgba(212,165,116,0.7); }
+  .opt2 .gbtn { background: rgba(212,165,116,0.08); border:1px solid rgba(212,165,116,0.4); color:#d4a574; }
+  .opt2 .gift-label { font-family:"David Libre",serif; font-size:0.6rem; letter-spacing:0.35em; color:rgba(212,165,116,0.85); margin-bottom:6px; }
+  .opt2 .glow-pulse {
+    position:absolute; inset: 20% -20% auto -20%; height: 70%; z-index: 1; pointer-events:none;
+    background: radial-gradient(ellipse at 50% 100%, rgba(255,200,140,0.22), transparent 60%);
+    animation: glowPulse 6s ease-in-out infinite;
+  }
+  @keyframes glowPulse { 0%,100%{opacity:0.5; transform:scale(1)} 50%{opacity:1; transform:scale(1.06)} }
+
+  /* ============================================================
+     OPTION 3 · DUSTY ROSE GARDEN
+     Blush overlay + terracotta ink. Cormorant italic display, generous serifs.
+     Floating petal animation. Soft script ampersand. Botanical accents.
+     ============================================================ */
+  .opt3 .ov { background:
+    radial-gradient(ellipse at 30% 0%, rgba(255,228,210,0.6), transparent 50%),
+    linear-gradient(180deg, rgba(255,238,228,0.82) 0%, rgba(245,210,200,0.85) 100%);
+  }
+  .opt3 { color: #5a2418; }
+  .opt3 .header-img { color: #8b3a28; font-size: 2.2rem; font-weight: 400; }
+  .opt3 .header-img .amp {
+    font-family: "Cormorant Garamond", "Brush Script MT", cursive;
+    font-style: italic; color: #c87868; font-size: 1.6em;
+  }
+  .opt3 .micro { font-family:"David Libre",serif; font-size: 0.6rem; letter-spacing: 0.3em; color: #a85a48; text-transform: uppercase; }
+  .opt3 .info { font-family:"David Libre",serif; font-size: 0.78rem; color: #8b3a28; letter-spacing: 0.06em; }
+  .opt3 .venue { font-family:"Frank Ruhl Libre",serif; font-size: 1.4rem; color: #6b2818; font-weight: 500; }
+  .opt3 .nav-pill { border:1px solid rgba(200,120,104,0.5); color:#a85a48; padding:3px 10px; border-radius:20px; font-size:0.55rem; letter-spacing:0.2em; }
+  .opt3 .time-val { font-family:"Frank Ruhl Libre",serif; font-size: 1.8rem; color: #8b3a28; font-weight:500; }
+  .opt3 .time-lbl { font-family:"David Libre",serif; font-size:0.55rem; letter-spacing:0.28em; color:#a85a48; }
+  .opt3 .icon-circle { font-size: 1.1rem; color: #c87868; }
+  .opt3 .hairline, .opt3 .time-sep { background: #c87868; opacity: 0.5; height: 1px; }
+  .opt3 .time-sep { width: 1px; background: #c87868; opacity:0.4; }
+  .opt3 .cd-val { font-family:"Frank Ruhl Libre",serif; font-size: 1.7rem; color: #8b3a28; font-variant-numeric: tabular-nums; font-weight: 500; }
+  .opt3 .cd-lbl { font-family:"David Libre",serif; font-size: 0.5rem; letter-spacing:0.25em; color:#a85a48; }
+  .opt3 .gbtn { background: rgba(200,120,104,0.1); border:1px solid rgba(200,120,104,0.45); color: #8b3a28; }
+  .opt3 .gift-label { font-family:"David Libre",serif; font-size:0.6rem; letter-spacing:0.3em; color:#a85a48; margin-bottom:6px; }
+  .opt3 .petal {
+    position:absolute; width:8px; height:8px; border-radius: 50% 0 50% 0;
+    background: rgba(200,120,104,0.4); z-index: 1; pointer-events:none;
+    animation: floatPetal 12s linear infinite;
+  }
+  .opt3 .petal:nth-child(1) { top:-10%; left:15%; animation-delay:0s; }
+  .opt3 .petal:nth-child(2) { top:-10%; left:48%; animation-delay:4s; background:rgba(212,168,140,0.4); }
+  .opt3 .petal:nth-child(3) { top:-10%; left:80%; animation-delay:8s; }
+  @keyframes floatPetal {
+    0%   { transform: translateY(0) rotate(0); opacity:0; }
+    10%  { opacity:1; }
+    90%  { opacity:1; }
+    100% { transform: translateY(120vh) rotate(720deg); opacity:0; }
+  }
+
+  /* ============================================================
+     OPTION 4 · MIDNIGHT WINE GLAMOUR
+     Burgundy overlay + blush + rose-gold gradient. Tall thin display.
+     Shimmer sweep on names every 8s. Slow zoom on photo (Ken Burns).
+     Tight luxury spacing with vertical rule accents.
+     ============================================================ */
+  .opt4 .photo { animation: kenBurns 30s ease-in-out infinite alternate; }
+  @keyframes kenBurns { 0% { transform: scale(1) translate(0,0); } 100% { transform: scale(1.08) translate(-1%, -1%); } }
+  .opt4 .ov { background:
+    radial-gradient(ellipse at 50% 110%, rgba(212,149,110,0.28), transparent 55%),
+    linear-gradient(180deg, rgba(38,12,22,0.5) 0%, rgba(75,25,40,0.78) 100%);
+  }
+  .opt4 { color: #f5e0d0; }
+  .opt4 .header-img {
+    font-size: 2.5rem; font-weight: 300; letter-spacing: 0.06em;
+    background: linear-gradient(180deg, #fbdcc0, #d4956e);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .opt4 .header-img::after {
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(110deg, transparent 40%, rgba(255,232,200,0.6) 50%, transparent 60%);
+    transform: translateX(-100%);
+    animation: shimmer 6s ease-in-out infinite;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    pointer-events:none;
+  }
+  @keyframes shimmer { 0%, 70% { transform: translateX(-100%);} 85% { transform: translateX(100%);} 100% { transform: translateX(100%);} }
+  .opt4 .header-img .amp { font-style: italic; opacity: 0.85; }
+  .opt4 .micro { font-family:"David Libre",serif; font-size: 0.55rem; letter-spacing: 0.5em; color: #e8b89c; text-transform: uppercase; }
+  .opt4 .info  { font-family:"David Libre",serif; font-size: 0.78rem; color:#f0d0bc; letter-spacing: 0.1em; }
+  .opt4 .venue { font-family:"Frank Ruhl Libre",serif; font-size: 1.45rem; color:#f5e0d0; font-weight: 400; letter-spacing: 0.04em; }
+  .opt4 .nav-pill { background: rgba(212,149,110,0.18); border:1px solid rgba(212,149,110,0.55); color:#fbdcc0; padding:4px 12px; border-radius:100px; font-size:0.55rem; letter-spacing:0.28em; }
+  .opt4 .time-val { font-family:"Frank Ruhl Libre",serif; font-size: 2.1rem; font-weight: 300;
+    background: linear-gradient(180deg, #fbdcc0, #c8835a);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .opt4 .time-lbl { font-family:"David Libre",serif; font-size:0.55rem; letter-spacing:0.35em; color:#e8b89c; }
+  .opt4 .icon-circle { font-size:1rem; color:#d4956e; }
+  .opt4 .hairline { background: linear-gradient(90deg, transparent, #d4956e, transparent); height:1px; }
+  .opt4 .time-sep { width:1px; height: 60px; background: linear-gradient(180deg, transparent, #d4956e, transparent); }
+  .opt4 .cd-val { font-family:"Frank Ruhl Libre",serif; font-size: 1.85rem; font-weight:300;
+    background: linear-gradient(180deg, #fbdcc0, #c8835a);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    font-variant-numeric: tabular-nums; }
+  .opt4 .cd-lbl { font-family:"David Libre",serif; font-size:0.5rem; letter-spacing:0.35em; color:#e8b89c; }
+  .opt4 .gbtn { background: rgba(212,149,110,0.1); border:1px solid rgba(212,149,110,0.45); color:#fbdcc0; }
+  .opt4 .gift-label { font-family:"David Libre",serif; font-size:0.6rem; letter-spacing:0.4em; color:#e8b89c; margin-bottom:6px; }
+
+  /* ============================================================
+     OPTION 5 · IVORY LINEN MINIMALIST
+     Bright cream + sage-charcoal ink. Modern minimalist. Big asymmetric type.
+     Subtle parallax drift on photo. Sharp hairlines, generous negative space.
+     ============================================================ */
+  .opt5 .photo { filter: saturate(0.7) brightness(1.05); animation: drift 40s ease-in-out infinite alternate; }
+  @keyframes drift { 0% { transform: translate(0,0) scale(1.02);} 100% { transform: translate(-2%, 1%) scale(1.05);} }
+  .opt5 .ov { background: linear-gradient(180deg, rgba(248,245,238,0.86) 0%, rgba(238,232,222,0.88) 100%); }
+  .opt5 { color: #2a2a26; }
+  .opt5 .header-img { color: #2a2a26; font-size: 2.3rem; font-weight: 400; letter-spacing: 0.02em; }
+  .opt5 .header-img .amp { color: #6b7858; font-style: italic; opacity: 0.85; }
+  .opt5 .micro { font-family:"David Libre",serif; font-size: 0.55rem; letter-spacing: 0.5em; color: #6b7858; text-transform: uppercase; }
+  .opt5 .info { font-family:"David Libre",serif; font-size: 0.78rem; color:#4a4a42; letter-spacing: 0.08em; }
+  .opt5 .venue { font-family:"Frank Ruhl Libre",serif; font-size: 1.5rem; color: #2a2a26; font-weight: 500; }
+  .opt5 .nav-pill { border:1px solid rgba(107,120,88,0.5); color:#6b7858; padding:3px 10px; border-radius: 4px; font-size:0.55rem; letter-spacing:0.25em; }
+  .opt5 .time-val { font-family:"Frank Ruhl Libre",serif; font-size: 2.1rem; color:#2a2a26; font-weight: 400; }
+  .opt5 .time-lbl { font-family:"David Libre",serif; font-size:0.55rem; letter-spacing:0.32em; color:#6b7858; }
+  .opt5 .icon-circle { font-size:1rem; color:#6b7858; }
+  .opt5 .hairline { background: #2a2a26; opacity: 0.25; height:1px; }
+  .opt5 .time-sep { width:1px; height:60px; background:#2a2a26; opacity:0.2; }
+  .opt5 .cd-val { font-family:"Frank Ruhl Libre",serif; font-size: 1.9rem; color:#2a2a26; font-weight:400; font-variant-numeric: tabular-nums; }
+  .opt5 .cd-lbl { font-family:"David Libre",serif; font-size:0.5rem; letter-spacing:0.32em; color:#6b7858; }
+  .opt5 .gbtn { background: transparent; border:1px solid rgba(42,42,38,0.3); border-radius: 6px; color:#2a2a26; }
+  .opt5 .gift-label { font-family:"David Libre",serif; font-size:0.6rem; letter-spacing:0.4em; color:#6b7858; margin-bottom:6px; }
+</style>
+
+<h2>Four Complete Redesigns</h2>
+<p class="subtitle">Each is a full direction — palette + typography + sizes + animation + spacing decided together. Photo background, header.png, info row, venue+Waze, times, countdown, and gift buttons all preserved. Click the one you want me to implement.</p>
+
+<div class="cards" style="grid-template-columns: repeat(2, 1fr); gap: 22px;">
+
+  <!-- ===== OPTION 1 ===== -->
+  <div class="card" data-choice="opt1" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="full-mock opt1">
+        <div class="photo"></div>
+        <div class="ov"></div>
+        <div class="grain"></div>
+        <div class="stage">
+          <div class="header-img">שילת<span class="amp">&amp;</span>רועי</div>
+          <div class="col" style="gap:4px;">
+            <div class="info">יום שלישי, כ״ח בסיוון תשפ״ו · 23 ביוני 2026</div>
+          </div>
+          <div class="hairline"></div>
+          <div class="row" style="gap:10px;">
+            <div class="venue">קיסר ים, קיסריה</div>
+            <span class="nav-pill">◐ ניווט</span>
+          </div>
+          <div class="times">
+            <div class="col"><span class="icon-circle">☼</span><span class="time-lbl">קבלת פנים</span><span class="time-val">18:15</span></div>
+            <div class="time-sep"></div>
+            <div class="col"><span class="icon-circle">♦</span><span class="time-lbl">חופה</span><span class="time-val">19:00</span></div>
+          </div>
+          <div class="hairline"></div>
+          <div class="cd">
+            <div class="cell"><span class="cd-val">142</span><span class="cd-lbl">ימים</span></div>
+            <div class="cell"><span class="cd-val">06</span><span class="cd-lbl">שעות</span></div>
+            <div class="cell"><span class="cd-val">28</span><span class="cd-lbl">דקות</span></div>
+            <div class="cell"><span class="cd-val">12</span><span class="cd-lbl">שניות</span></div>
+          </div>
+          <div class="col">
+            <div class="gift-label">מתנות ואיחולים</div>
+            <div class="gifts">
+              <div class="gbtn">♥</div>
+              <div class="gbtn">▦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>1 · Warm Champagne Editorial</h3>
+      <p><strong>Palette:</strong> cream overlay (#fcf5e8), cognac ink (#6b4a2a), champagne gold accents (#b8956e).<br>
+      <strong>Fonts:</strong> Frank Ruhl Libre for display & numerals, David Libre for labels (all-caps · wide tracking).<br>
+      <strong>Sizes:</strong> bigger header, smaller all-caps micro-labels above each datum.<br>
+      <strong>Animation:</strong> current fade-up only — restrained &amp; quiet.<br>
+      <strong>Spacing:</strong> gold gradient hairlines between sections, generous airy gaps.<br>
+      <em>Vibe: bridal magazine. Quiet luxury.</em></p>
+    </div>
+  </div>
+
+  <!-- ===== OPTION 2 ===== -->
+  <div class="card" data-choice="opt2" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="full-mock opt2">
+        <div class="photo"></div>
+        <div class="ov"></div>
+        <div class="glow-pulse"></div>
+        <div class="grain"></div>
+        <div class="stage">
+          <div class="header-img">שילת<span class="amp">&amp;</span>רועי</div>
+          <div class="col" style="gap:4px;">
+            <div class="info">יום שלישי, כ״ח בסיוון תשפ״ו · 23 ביוני 2026</div>
+          </div>
+          <div class="hairline"></div>
+          <div class="row" style="gap:10px;">
+            <div class="venue">קיסר ים, קיסריה</div>
+            <span class="nav-pill">◐ ניווט</span>
+          </div>
+          <div class="times">
+            <div class="col"><span class="icon-circle">☼</span><span class="time-lbl">קבלת פנים</span><span class="time-val">18:15</span></div>
+            <div class="time-sep"></div>
+            <div class="col"><span class="icon-circle">♦</span><span class="time-lbl">חופה</span><span class="time-val">19:00</span></div>
+          </div>
+          <div class="hairline"></div>
+          <div class="cd">
+            <div class="cell"><span class="cd-val">142</span><span class="cd-lbl">ימים</span></div>
+            <div class="cell"><span class="cd-val">06</span><span class="cd-lbl">שעות</span></div>
+            <div class="cell"><span class="cd-val">28</span><span class="cd-lbl">דקות</span></div>
+            <div class="cell"><span class="cd-val">12</span><span class="cd-lbl">שניות</span></div>
+          </div>
+          <div class="col">
+            <div class="gift-label">מתנות ואיחולים</div>
+            <div class="gifts">
+              <div class="gbtn">♥</div>
+              <div class="gbtn">▦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>2 · Moonlit Ink Cinematic</h3>
+      <p><strong>Palette:</strong> dark navy overlay (photo shines through brighter), ivory text, rose-gold gradient on display numbers.<br>
+      <strong>Fonts:</strong> Frank Ruhl Libre light weight, big and airy. David Libre for labels — wide spaced caps.<br>
+      <strong>Sizes:</strong> larger display numerals (countdown + times), photo more visible.<br>
+      <strong>Animation:</strong> slow golden glow-pulse rising from the horizon (6s loop) + current fade-up.<br>
+      <strong>Spacing:</strong> gradient gold hairlines, pill-shaped Waze button with gold border.<br>
+      <em>Vibe: golden-hour cinema poster. Modern + emotional.</em></p>
+    </div>
+  </div>
+
+  <!-- ===== OPTION 3 ===== -->
+  <div class="card" data-choice="opt3" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="full-mock opt3">
+        <div class="photo"></div>
+        <div class="ov"></div>
+        <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+        <div class="grain"></div>
+        <div class="stage">
+          <div class="header-img">שילת<span class="amp">&amp;</span>רועי</div>
+          <div class="col" style="gap:4px;">
+            <div class="info">יום שלישי, כ״ח בסיוון תשפ״ו · 23 ביוני 2026</div>
+          </div>
+          <div class="hairline"></div>
+          <div class="row" style="gap:10px;">
+            <div class="venue">קיסר ים, קיסריה</div>
+            <span class="nav-pill">◐ ניווט</span>
+          </div>
+          <div class="times">
+            <div class="col"><span class="icon-circle">☼</span><span class="time-lbl">קבלת פנים</span><span class="time-val">18:15</span></div>
+            <div class="time-sep"></div>
+            <div class="col"><span class="icon-circle">♦</span><span class="time-lbl">חופה</span><span class="time-val">19:00</span></div>
+          </div>
+          <div class="hairline"></div>
+          <div class="cd">
+            <div class="cell"><span class="cd-val">142</span><span class="cd-lbl">ימים</span></div>
+            <div class="cell"><span class="cd-val">06</span><span class="cd-lbl">שעות</span></div>
+            <div class="cell"><span class="cd-val">28</span><span class="cd-lbl">דקות</span></div>
+            <div class="cell"><span class="cd-val">12</span><span class="cd-lbl">שניות</span></div>
+          </div>
+          <div class="col">
+            <div class="gift-label">מתנות ואיחולים</div>
+            <div class="gifts">
+              <div class="gbtn">♥</div>
+              <div class="gbtn">▦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>3 · Dusty Rose Garden</h3>
+      <p><strong>Palette:</strong> blush overlay, terracotta ink (#8b3a28), rose accents (#c87868).<br>
+      <strong>Fonts:</strong> Frank Ruhl Libre + an italic Cormorant ampersand (large, scripted feel).<br>
+      <strong>Sizes:</strong> oversized italic <em>&amp;</em> as a focal flourish in the header.<br>
+      <strong>Animation:</strong> 3 soft floating petals drifting slowly from top to bottom (12s loop), fade-up.<br>
+      <strong>Spacing:</strong> terracotta hairlines, rosy pill button, warm intimacy.<br>
+      <em>Vibe: hand-written love letter. The most romantic.</em></p>
+    </div>
+  </div>
+
+  <!-- ===== OPTION 4 ===== -->
+  <div class="card" data-choice="opt4" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; background:transparent;">
+      <div class="full-mock opt4">
+        <div class="photo"></div>
+        <div class="ov"></div>
+        <div class="grain"></div>
+        <div class="stage">
+          <div class="header-img">שילת<span class="amp">&amp;</span>רועי</div>
+          <div class="col" style="gap:4px;">
+            <div class="info">יום שלישי, כ״ח בסיוון תשפ״ו · 23 ביוני 2026</div>
+          </div>
+          <div class="hairline"></div>
+          <div class="row" style="gap:10px;">
+            <div class="venue">קיסר ים, קיסריה</div>
+            <span class="nav-pill">◐ ניווט</span>
+          </div>
+          <div class="times">
+            <div class="col"><span class="icon-circle">☼</span><span class="time-lbl">קבלת פנים</span><span class="time-val">18:15</span></div>
+            <div class="time-sep"></div>
+            <div class="col"><span class="icon-circle">♦</span><span class="time-lbl">חופה</span><span class="time-val">19:00</span></div>
+          </div>
+          <div class="hairline"></div>
+          <div class="cd">
+            <div class="cell"><span class="cd-val">142</span><span class="cd-lbl">ימים</span></div>
+            <div class="cell"><span class="cd-val">06</span><span class="cd-lbl">שעות</span></div>
+            <div class="cell"><span class="cd-val">28</span><span class="cd-lbl">דקות</span></div>
+            <div class="cell"><span class="cd-val">12</span><span class="cd-lbl">שניות</span></div>
+          </div>
+          <div class="col">
+            <div class="gift-label">מתנות ואיחולים</div>
+            <div class="gifts">
+              <div class="gbtn">♥</div>
+              <div class="gbtn">▦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>4 · Midnight Wine Glamour</h3>
+      <p><strong>Palette:</strong> burgundy overlay (#4b1928), blush text, rose-gold gradient (#d4956e → #fbdcc0).<br>
+      <strong>Fonts:</strong> Frank Ruhl Libre at light weight, taller display sizes; David Libre micro-caps with very wide tracking (0.4em).<br>
+      <strong>Sizes:</strong> tallest, thinnest display numerals of the set.<br>
+      <strong>Animation:</strong> slow Ken Burns zoom on photo (30s) + occasional shimmer sweep across names (every 6s).<br>
+      <strong>Spacing:</strong> tight luxury rhythm, gradient gold vertical rules between times.<br>
+      <em>Vibe: candlelit reception. The most "exciting" — dramatic &amp; glamorous.</em></p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:28px;">
+  Click the card you want me to build, or tell me in chat. Once you pick one, I'll write the full design spec and implement it in styles.css.
+</p>
