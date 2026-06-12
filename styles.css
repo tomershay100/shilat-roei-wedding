@@ -52,6 +52,7 @@ body {
     transition: opacity 1.5s ease;
 }
 
+
 .landing-overlay {
     position: fixed;
     inset: 0;
@@ -104,8 +105,7 @@ body {
 
 .landing-header-img {
     display: block;
-    /* scale up past natural width so the 4:1 image renders taller */
-    width: clamp(340px, 130vw, 1100px);
+    width: clamp(340px, 96vw, 780px);
     height: auto;
     mix-blend-mode: multiply;
     animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both;
@@ -225,6 +225,11 @@ body {
     filter: brightness(0) saturate(100%) invert(58%) sepia(28%) saturate(420%) hue-rotate(355deg) brightness(92%) contrast(180%);
     opacity: 0.9;
     margin-bottom: 0.25rem;
+}
+
+.time-icon--sunset {
+    width: clamp(50px, 8.5vw, 82px);
+    height: clamp(50px, 8.5vw, 82px);
 }
 
 .time-label {
@@ -450,7 +455,7 @@ html[dir=rtl] .modal-close { right: auto; left: 1rem; }
         gap: clamp(1rem, 2.5vh, 2rem);
     }
     .landing-header-img {
-        width: clamp(460px, 55vw, 900px);
+        width: clamp(460px, 44vw, 720px);
     }
 }
 
@@ -458,7 +463,7 @@ html[dir=rtl] .modal-close { right: auto; left: 1rem; }
 
 @media (max-height: 700px) {
     .landing-header-img {
-        width: clamp(220px, 60vw, 420px);
+        width: clamp(220px, 55vw, 400px);
     }
     .time-icon {
         width: clamp(26px, 4vw, 40px);
