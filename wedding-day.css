@@ -47,30 +47,23 @@
     margin-bottom: auto;
 }
 
-.day-gift-label {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 5vw, 2.8rem);
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: var(--color-text-muted);
-}
 
 .day-gift-buttons {
     display: flex;
-    gap: clamp(1.5rem, 5vw, 3rem);
+    gap: 1rem;
     justify-content: center;
 }
 
 .day-gift-btn {
-    width: clamp(100px, 22vw, 150px);
-    height: clamp(100px, 22vw, 150px);
+    width: clamp(68px, 10vw, 96px);
+    height: clamp(68px, 10vw, 96px);
     padding: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
+    background: rgba(184,149,110,0.06);
+    border: 1px solid var(--color-gold-soft);
+    border-radius: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -78,13 +71,15 @@
 .day-gift-btn:hover {
     background: var(--color-gold-faint);
     border-color: var(--color-border-strong);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(184,149,110,0.18);
 }
 
 .day-gift-btn-icon {
-    width: clamp(60px, 13vw, 90px);
-    height: clamp(60px, 13vw, 90px);
+    width: clamp(38px, 6vw, 56px);
+    height: clamp(38px, 6vw, 56px);
     object-fit: contain;
+    filter: grayscale(25%);
     transition: filter 0.3s ease;
 }
 
