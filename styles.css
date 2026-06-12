@@ -38,25 +38,15 @@ body {
     position: fixed;
     inset: 0;
     z-index: 0;
-    background:
-        radial-gradient(ellipse 80% 60% at 20% 30%, #ede4d8 0%, transparent 60%),
-        radial-gradient(ellipse 70% 80% at 80% 70%, #dde6e8 0%, transparent 60%),
-        radial-gradient(ellipse 90% 70% at 50% 50%, #ede8e2 0%, transparent 70%),
-        linear-gradient(160deg, #f5f0ea 0%, #edf0f2 50%, #f5eef0 100%);
-    animation: bgShift 18s ease-in-out infinite alternate;
-}
-
-@keyframes bgShift {
-    0%   { filter: hue-rotate(0deg) brightness(1); }
-    50%  { filter: hue-rotate(12deg) brightness(1.03); }
-    100% { filter: hue-rotate(-8deg) brightness(0.98); }
+    background: url("background-image-1.jpeg") center center / cover no-repeat;
+    filter: grayscale(100%);
 }
 
 .landing-overlay {
     position: fixed;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.2) 100%);
+    background: rgba(255, 255, 255, 0.78);
     pointer-events: none;
 }
 

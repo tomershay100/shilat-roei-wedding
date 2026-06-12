@@ -72,7 +72,12 @@ window.addEventListener('keydown', (e) => {
 
 // =================== BIT ===================
 
+const BIT_LINKS = [
+    'https://bit.ly/bit-link-1',
+    'https://bit.ly/bit-link-2',
+];
+
 function openBit() {
-    // Replace with your actual Bit payment link
-    window.open('https://bit.ly/your-bit-link', '_blank');
+    const link = BIT_LINKS[Date.now() % 2];
+    window.open(link, '_blank');
 }
