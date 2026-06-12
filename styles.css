@@ -44,8 +44,12 @@ body {
     position: fixed;
     inset: 0;
     z-index: 0;
-    background: url("background-image-1.jpeg") center center / cover no-repeat;
+    background-image: url("background-image-1.jpeg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
     filter: sepia(0.18) saturate(0.85) brightness(1.02);
+    transition: opacity 1.5s ease;
 }
 
 .landing-overlay {
@@ -84,6 +88,7 @@ body {
     z-index: 10;
     height: 100vh;
     height: 100dvh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,7 +104,8 @@ body {
 
 .landing-header-img {
     display: block;
-    width: clamp(340px, 98vw, 900px);
+    /* scale up past natural width so the 4:1 image renders taller */
+    width: clamp(340px, 130vw, 1100px);
     height: auto;
     mix-blend-mode: multiply;
     animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both;
@@ -444,7 +450,7 @@ html[dir=rtl] .modal-close { right: auto; left: 1rem; }
         gap: clamp(1rem, 2.5vh, 2rem);
     }
     .landing-header-img {
-        width: clamp(460px, 44vw, 720px);
+        width: clamp(460px, 55vw, 900px);
     }
 }
 

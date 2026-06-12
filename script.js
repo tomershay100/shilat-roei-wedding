@@ -70,6 +70,31 @@ window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeBank();
 });
 
+// =================== BACKGROUND ROTATION ===================
+
+const BG_IMAGES = [
+    'background-image-1.jpeg',
+    'background-image-2.jpeg',
+    'background-image-3.jpeg',
+    'background-image-4.jpeg',
+];
+
+let bgIndex = 0;
+
+function rotateBg() {
+    bgIndex = (bgIndex + 1) % BG_IMAGES.length;
+    const el = document.querySelector('.bg-gradient');
+    if (!el) return;
+    el.style.transition = 'opacity 1.5s ease';
+    el.style.opacity = '0';
+    setTimeout(() => {
+        el.style.backgroundImage = `url("${BG_IMAGES[bgIndex]}")`;
+        el.style.opacity = '1';
+    }, 1500);
+}
+
+setInterval(rotateBg, 8000);
+
 // =================== BIT ===================
 
 const BIT_LINKS = [
