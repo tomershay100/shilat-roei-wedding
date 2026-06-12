@@ -465,9 +465,7 @@ html[dir=rtl] .modal-close { right: auto; left: 1rem; }
 /* ===== SHORT SCREENS (landscape phones, small phones) ===== */
 
 @media (max-height: 700px) {
-    .landing-header-img {
-        width: clamp(220px, 55vw, 400px);
-    }
+
     .time-icon {
         width: clamp(26px, 4vw, 40px);
         height: clamp(26px, 4vw, 40px);
