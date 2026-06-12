@@ -49,7 +49,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     filter: sepia(0.18) saturate(0.85) brightness(1.02);
-    transition: opacity 1.5s ease;
+    transition: opacity 0.5s ease;
 }
 
 
@@ -125,14 +125,15 @@ body {
 
 .info-text {
     font-family: var(--font-body);
-    font-size: clamp(1.7rem, 5vw, 2.6rem);
-    font-weight: 400;
+    font-size: clamp(2rem, 5.5vw, 3rem);
+    font-weight: 700;
     letter-spacing: 0.06em;
     color: var(--color-text-muted);
 }
 
 .info-text--hebrew {
     font-size: clamp(1.3rem, 3.5vw, 2rem);
+    font-weight: 400;
     color: var(--color-text-faint);
 }
 
@@ -160,8 +161,8 @@ body {
 
 .venue-name {
     font-family: var(--font-body);
-    font-size: clamp(1.9rem, 5.5vw, 3.5rem);
-    font-weight: 500;
+    font-size: clamp(1.7rem, 5vw, 3rem);
+    font-weight: 400;
     letter-spacing: 0.02em;
     color: var(--color-text);
 }
