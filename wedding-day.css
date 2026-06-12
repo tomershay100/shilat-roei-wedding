@@ -17,9 +17,17 @@
     text-align: center;
 }
 
+.day-header-img {
+    display: block;
+    width: clamp(340px, 96vw, 780px);
+    height: auto;
+    mix-blend-mode: multiply;
+    flex-shrink: 0;
+}
+
 /* Thank you string */
 .thankyou-text {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: clamp(1.5rem, 5.5vw, 3rem);
     font-weight: 400;
     letter-spacing: 0.04em;
