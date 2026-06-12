@@ -104,11 +104,50 @@ if (bgA && bgB) {
 // =================== BIT ===================
 
 const BIT_LINKS = [
-    'https://bit.ly/bit-link-1',
-    'https://bit.ly/bit-link-2',
+    'https://www.bitpay.co.il/app/me/C4F6D699-548E-1CD6-4EDF-F30C0AE0C43B78D1',
+    'https://www.bitpay.co.il/app/me/633851A1-312D-E508-057D-0DE05ED13091B985',
 ];
 
 function openBit() {
-    const link = BIT_LINKS[Date.now() % 2];
-    window.open(link, '_blank');
+    const link = BIT_LINKS[Math.floor(Math.random() * BIT_LINKS.length)];
+    const a = document.createElement('a');
+    a.href = link;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+// =================== COPY TO CLIPBOARD ===================
+
+function copyValue(btn, text) {
+    function onSuccess() {
+        btn.textContent = '✓';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = '⧉';
+            btn.classList.remove('copied');
+        }, 1500);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallbackCopy(text, onSuccess));
+    } else {
+        fallbackCopy(text, onSuccess);
+    }
+}
+
+function fallbackCopy(text, onSuccess) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+        document.execCommand('copy');
+        onSuccess();
+    } catch (_) {}
+    document.body.removeChild(ta);
 }
