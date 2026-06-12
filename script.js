@@ -91,7 +91,7 @@ if (bgMain) {
             bgMain.style.backgroundImage = `url("${BG_IMAGES[bgIndex]}")`;
             bgMain.style.opacity = '1';
         }, 1500);
-    }, 8000);
+    }, 3000);
 }
 
 // =================== BIT ===================
