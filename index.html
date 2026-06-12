@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="23.6.2026 קיסר ים, קיסריה" />
+    <title>שילת ורועי | הזמנה לחתונה</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=David+Libre:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <div class="bg-gradient"></div>
+    <div class="landing-overlay"></div>
+    <div class="grain"></div>
+
+    <div class="main-content">
+
+        <!-- Header image -->
+        <img src="header.png" alt="שילת ורועי" class="landing-header-img" />
+
+        <!-- Date · venue -->
+        <div class="info-row">
+            <span class="info-text">יום שלישי, כ״ח בסיוון תשפ״ו</span>
+            <span class="info-divider">·</span>
+            <span class="info-text">23 ביוני 2026</span>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <!-- Venue + nav -->
+        <div class="venue-row">
+            <span class="venue-name">קיסר ים, קיסריה</span>
+            <a href="https://waze.com/ul/hsvbbcurypnow" target="_blank" class="venue-nav-link" aria-label="ניווט ב-Waze">
+                <img src="waze-icon.webp" alt="Waze" class="waze-icon" />
+                <span>ניווט</span>
+            </a>
+        </div>
+
+        <!-- Times -->
+        <div class="times-row">
+            <div class="time-item">
+                <img src="sunset.png" alt="" class="time-icon" />
+                <span class="time-label">קבלת פנים</span>
+                <span class="time-value">18:15</span>
+            </div>
+            <div class="time-sep"></div>
+            <div class="time-item">
+                <img src="wine.png" alt="" class="time-icon" />
+                <span class="time-label">חופה</span>
+                <span class="time-value">19:00</span>
+            </div>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <!-- Countdown -->
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-value" id="cd-d">00</span>
+                <span class="countdown-label">ימים</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-item">
+                <span class="countdown-value" id="cd-h">00</span>
+                <span class="countdown-label">שעות</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-item">
+                <span class="countdown-value" id="cd-m">00</span>
+                <span class="countdown-label">דקות</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-item">
+                <span class="countdown-value" id="cd-s">00</span>
+                <span class="countdown-label">שניות</span>
+            </div>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <!-- Gifts -->
+        <div class="gift-section">
+            <span class="gift-label">מתנות ואיחולים</span>
+            <div class="gift-buttons">
+                <button class="gift-btn" onclick="openBit()" aria-label="Bit payment">
+                    <img src="bit-icon.png" alt="Bit" class="gift-btn-icon" />
+                </button>
+                <button class="gift-btn" onclick="openBank()" aria-label="Bank transfer">
+                    <img src="bank-icon.png" alt="העברה בנקאית" class="gift-btn-icon" />
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== BANK MODAL ===== -->
+    <div class="modal-backdrop" id="bankModal" onclick="closeBank()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeBank()">×</button>
+            <h3 class="modal-title">העברה בנקאית</h3>
+            <div class="modal-body">
+                <p>בנק: XXX</p>
+                <p>סניף: XXX</p>
+                <p>חשבון: XXX</p>
+                <p>שם: שילת ורועי</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
