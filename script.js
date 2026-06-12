@@ -79,18 +79,25 @@ const BG_IMAGES = [
     'background-image-4.jpeg',
 ];
 
-const bgMain = document.getElementById('bg-main');
+const bgA = document.getElementById('bg-a');
+const bgB = document.getElementById('bg-b');
 
-if (bgMain) {
+if (bgA && bgB) {
     let bgIndex = 0;
+    // bgA is the current visible layer, bgB fades in on top then becomes the base
+    let current = bgA;
+    let next    = bgB;
 
     setInterval(() => {
         bgIndex = (bgIndex + 1) % BG_IMAGES.length;
-        bgMain.style.opacity = '0';
-        setTimeout(() => {
-            bgMain.style.backgroundImage = `url("${BG_IMAGES[bgIndex]}")`;
-            bgMain.style.opacity = '1';
-        }, 500);
+        next.style.backgroundImage = `url("${BG_IMAGES[bgIndex]}")`;
+        next.style.zIndex  = '1';
+        next.style.opacity = '1';
+        current.style.zIndex = '0';
+        // After fade completes, reset current behind next
+        const outgoing = current;
+        setTimeout(() => { outgoing.style.opacity = '0'; }, 1500);
+        [current, next] = [next, current];
     }, 3000);
 }
 
