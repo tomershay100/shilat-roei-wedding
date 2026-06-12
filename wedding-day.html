@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>שילת ורועי | יום החתונה</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=David+Libre:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="wedding-day.css" />
+</head>
+
+<body>
+
+    <div class="bg-gradient"></div>
+    <div class="landing-overlay"></div>
+    <div class="grain"></div>
+
+    <div class="day-content">
+
+        <!-- Header image -->
+        <img src="header.png" alt="שילת ורועי" class="landing-header-img" />
+
+        <div class="divider-line"></div>
+
+        <!-- Thank you -->
+        <p class="thankyou-text">תודה רבה שבאתם לשמוח בשמחתינו</p>
+
+        <div class="divider-line"></div>
+
+        <!-- Gifts -->
+        <div class="day-gift-section">
+            <span class="day-gift-label">מתנות ואיחולים</span>
+            <div class="day-gift-buttons">
+                <button class="day-gift-btn" onclick="openBit()" aria-label="Bit payment">
+                    <img src="bit-icon.png" alt="Bit" class="day-gift-btn-icon" />
+                </button>
+                <button class="day-gift-btn" onclick="openBank()" aria-label="Bank transfer">
+                    <img src="bank-icon.png" alt="העברה בנקאית" class="day-gift-btn-icon" />
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== BANK MODAL ===== -->
+    <div class="modal-backdrop" id="bankModal" onclick="closeBank()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeBank()">×</button>
+            <h3 class="modal-title">העברה בנקאית</h3>
+            <div class="modal-body">
+                <p>בנק: XXX</p>
+                <p>סניף: XXX</p>
+                <p>חשבון: XXX</p>
+                <p>שם: שילת ורועי</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+/* ====================================================
+   WEDDING DAY PAGE — same theme, gifts-focused
+   ==================================================== */
+
+.day-content {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: clamp(0.3rem, 1vh, 1rem) clamp(1rem, 5vw, 3rem);
+    padding-top: max(clamp(0.3rem, 1vh, 1rem), env(safe-area-inset-top));
+    padding-bottom: max(clamp(0.3rem, 1vh, 1rem), env(safe-area-inset-bottom));
+    text-align: center;
+}
+
+/* Thank you string */
+.thankyou-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 5.5vw, 3rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    max-width: 80vw;
+}
+
+/* Gifts — larger than main page */
+.day-gift-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 3vh, 2rem);
+}
+
+.day-gift-label {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+}
+
+.day-gift-buttons {
+    display: flex;
+    gap: clamp(1.5rem, 5vw, 3rem);
+    justify-content: center;
+}
+
+.day-gift-btn {
+    width: clamp(100px, 22vw, 150px);
+    height: clamp(100px, 22vw, 150px);
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.day-gift-btn:hover {
+    background: var(--color-gold-faint);
+    border-color: var(--color-border-strong);
+    transform: translateY(-3px);
+}
+
+.day-gift-btn-icon {
+    width: clamp(60px, 13vw, 90px);
+    height: clamp(60px, 13vw, 90px);
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+.day-gift-btn:hover .day-gift-btn-icon {
+    filter: grayscale(0%);
+}
