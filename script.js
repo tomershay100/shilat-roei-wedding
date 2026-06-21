@@ -101,8 +101,19 @@ if (bgA && bgB) {
     }, 3000);
 }
 
-// =================== BIT ===================
+// =================== PayBox ===================
+const PAYBOX_LINK = 'https://links.payboxapp.com/mBuK4eK393b';
 
+function openPaybox() {
+    const a = document.createElement('a');
+    a.href = PAYBOX_LINK;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+// =================== BIT ===================
 const BIT_LINKS = [
     'https://www.bitpay.co.il/app/me/C4F6D699-548E-1CD6-4EDF-F30C0AE0C43B78D1',
     'https://www.bitpay.co.il/app/me/633851A1-312D-E508-057D-0DE05ED13091B985',
